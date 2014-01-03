@@ -19,6 +19,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define "workstation" do |workstation|
     workstation.vm.hostname = "workstation"
     workstation.vm.network :private_network, ip: "192.168.33.10"
+
+    workstation.vm.provision :chef_solo do |chef|
+      chef.cookbooks_path = "./cookbooks"
+      chef.roles_path = "./roles"
+      chef.data_bags_path = "./data_bags"
+      chef.add_role "workstation"
+    end
   end
 
   config.vm.define "server" do |server|

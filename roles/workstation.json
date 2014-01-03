@@ -1,0 +1,9 @@
+{
+  "name": "workstation",
+  "description": "Workstation Configuration",
+  "json_class": "Chef::Role",
+  "chef_type": "role",
+  "run_list": [
+    "recipe[mycookbook::default]"
+  ]
+}
