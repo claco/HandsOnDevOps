@@ -31,6 +31,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define "server" do |server|
     server.vm.hostname = "server"
     server.vm.network :private_network, ip: "192.168.33.20"
+
+    server.vm.provision :chef_solo do |chef|
+      chef.cookbooks_path = "./cookbooks"
+      chef.roles_path = "./roles"
+      chef.data_bags_path = "./data_bags"
+      chef.add_role "server"
+    end
   end
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,

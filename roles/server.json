@@ -1,0 +1,13 @@
+{
+  "name": "server",
+  "description": "Server Configuration",
+  "json_class": "Chef::Role",
+  "chef_type": "role",
+  "run_list": [
+    "recipe[mycookbook::users]",
+    "recipe[mycookbook::apt]",
+    "recipe[mycookbook::mysql]",
+    "recipe[mycookbook::ruby]",
+    "recipe[mycookbook::myapp]"
+  ]
+}

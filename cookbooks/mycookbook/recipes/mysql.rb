@@ -22,3 +22,6 @@ package "mysql-server"
 package "mysql-client" do
   action :install
 end
+
+package "build-essential"
+package "libmysqlclient-dev"

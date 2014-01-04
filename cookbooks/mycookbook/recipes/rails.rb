@@ -19,8 +19,6 @@
 
 include_recipe "mycookbook::ruby"
 
-package "libmysqlclient-dev"
-
 gem_package "rails" do
   options("--no-ri --no-rdoc")
 end
