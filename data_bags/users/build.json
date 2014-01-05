@@ -1,0 +1,9 @@
+{
+  "id": "build",
+  "groups": ["sysadmin"],
+  "password": "$6$ECIy/pVovVQ6qja$A0owsw1LKsPPUQe2CKi.5IfAWuLGvyj3IgiRJfFxG3/MrmYTiAOPRE0qaBVv/lBgmSfI27T.Tg2EzrC7A72qI/",
+  "ssh_keys": [
+    "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCbk2wxZM8kjhKDY+4WQaDLabSI7fi/IPcj7IxH3NO3i22I5UZ/aEQNPxDgJwQym+uh6RkW2qee5GH2ORIPdgaM+KcQ13d3wKMLxEf9j5zVu7q78OXPtULQUArxrByTwpyOnByFLjWo+3GwIwSlKb8Mep1BeCiWtFSBG3cw5Gnvz2DTFkmI3L5qyRJVpDvzc2F4Q/Cym8H9GYrhlmO3BfAfEKT4xq/x5b2Ngy7AUEGWB7JS/oVA3U/w5N9Qo7vXufrwCh2/DwCP56D/LKsVb52FpC0j7+4/xPWl1QUJg2r+I/2kWnSGFGOJA3/7FTzjsxIbk1QJtVOD+TV40k2R22+t claco@hank"
+  ],
+  "shell": "/bin/bash"
+}

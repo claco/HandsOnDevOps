@@ -17,11 +17,10 @@
 # limitations under the License.
 #
 
-package "mysql-server"
+node.set["mysql"]["server_root_password"] = ""
 
-package "mysql-client" do
-  action :install
-end
+include_recipe "mysql::client"
+include_recipe "mysql::server"
+include_recipe "build-essential::default"
 
-package "build-essential"
 package "libmysqlclient-dev"

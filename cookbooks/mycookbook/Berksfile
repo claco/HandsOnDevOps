@@ -1,0 +1,9 @@
+site :opscode
+
+metadata
+
+cookbook "apt"
+cookbook "build-essential"
+cookbook "database"
+cookbook "mysql"
+cookbook "users"

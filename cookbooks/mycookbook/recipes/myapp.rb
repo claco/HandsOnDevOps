@@ -17,6 +17,8 @@
 # limitations under the License.
 #
 
+include_recipe "database::mysql"
+
 directory "/var/www/myapp/shared/config" do
   owner "build"
   group "build"
@@ -24,22 +26,24 @@ directory "/var/www/myapp/shared/config" do
   recursive true
 end
 
-execute "add-mysql-user" do
-  command "/usr/bin/mysql -u root -D mysql -r -B -N -e \"CREATE USER 'myapp'@'localhost' IDENTIFIED BY 'password'\""
-  action :run
-  only_if { `/usr/bin/mysql -u root -D mysql -r -B -N -e "SELECT COUNT(*) FROM user where User='myapp' and Host='localhost'"`.to_i == 0 }
+mysql_connection_info = {
+  :username => "root",
+  :password => node["mysql"]["server_root_password"],
+  :socket   => node["mysql"]["socket"]
+}
+
+mysql_database "myapp" do
+  connection mysql_connection_info
+  action :create
 end
 
-execute "create-mysql-database" do
-  command "/usr/bin/mysql -u root -D mysql -r -B -N -e \"CREATE DATABASE myapp CHARACTER SET utf8 COLLATE utf8_unicode_ci\""
-  action :run
-  only_if { `/usr/bin/mysql -u root -D mysql -r -B -N -e \"SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='myapp'\"`.to_i == 0 }
-end
-
-execute "grant-myapp-privs" do
-  command "/usr/bin/mysql -u root -D mysql -r -B -N -e \"GRANT ALL on myapp.* to 'myapp'@'localhost'\""
-  action :run
-  only_if { `/usr/bin/mysql -u root -D mysql -r -B -N -e \"SELECT COUNT(*) FROM db where User='myapp' and Host='localhost' and Db='myapp'\"`.to_i == 0 }
+mysql_database_user "myapp" do
+  connection    mysql_connection_info
+  password      "password"
+  database_name "myapp"
+  host          "localhost"
+  privileges    [:all]
+  action        [:create, :grant]
 end
 
 template "/var/www/myapp/shared/config/database.yml" do

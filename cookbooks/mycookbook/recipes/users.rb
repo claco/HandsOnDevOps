@@ -17,30 +17,16 @@
 # limitations under the License.
 #
 
-user "build" do
-  home "/home/build"
-  shell "/bin/bash"
-  password "$6$ECIy/pVovVQ6qja$A0owsw1LKsPPUQe2CKi.5IfAWuLGvyj3IgiRJfFxG3/MrmYTiAOPRE0qaBVv/lBgmSfI27T.Tg2EzrC7A72qI/"
-  supports :manage_home => true
+include_recipe "users::sysadmins"
+
+file "/etc/sudoers.d/build" do
+  action :delete
 end
 
-directory "/home/build/.ssh" do
-  owner "build"
-  group "build"
-  mode "0700"
-end
-
-cookbook_file "/home/build/.ssh/authorized_keys" do
-  source "ssh/id_rsa.pub"
-  owner "build"
-  group "build"
-  mode "0600"
-end
-
-template "/etc/sudoers.d/build" do
+template "/etc/sudoers.d/sysadmin" do
   source "sudo/user.erb"
   owner "root"
   group "root"
   mode "0440"
-  variables :username => "build"
+  variables :username => "%sysadmin"
 end
