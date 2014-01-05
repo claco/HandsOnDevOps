@@ -1,0 +1,9 @@
+{
+  "id": "mysql",
+  "myapp": {
+    "encrypted_data": "jvrBil2Pg94fSTnL9nobkI4ACDj1+o8t1C3M4YYBgBY=\n",
+    "iv": "cz5Q9I7HmEtKTkGGIvZ0RA==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  }
+}

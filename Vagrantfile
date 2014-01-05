@@ -23,6 +23,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     workstation.vm.provision :chef_client do |chef|
       chef.chef_server_url = "https://192.168.33.10"
       chef.validation_key_path = "./chef-validator.pem"
+      chef.encrypted_data_bag_secret_key_path = ".chef/encrypted_data_bag_secret"
 
       chef.add_role "workstation"
     end
@@ -35,6 +36,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     server.vm.provision :chef_client do |chef|
       chef.chef_server_url = "https://192.168.33.10"
       chef.validation_key_path = "./chef-validator.pem"
+      chef.encrypted_data_bag_secret_key_path = ".chef/encrypted_data_bag_secret"
 
       chef.add_role "server"
     end

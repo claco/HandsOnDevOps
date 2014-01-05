@@ -18,6 +18,7 @@
 #
 
 include_recipe "mycookbook::ruby"
+include_recipe "git::default"
 
 gem_package "rails" do
   options("--no-ri --no-rdoc")
