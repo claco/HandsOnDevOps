@@ -20,10 +20,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     workstation.vm.hostname = "workstation"
     workstation.vm.network :private_network, ip: "192.168.33.10"
 
-    workstation.vm.provision :chef_solo do |chef|
-      chef.cookbooks_path = "./cookbooks"
-      chef.roles_path = "./roles"
-      chef.data_bags_path = "./data_bags"
+    workstation.vm.provision :chef_client do |chef|
+      chef.chef_server_url = "https://192.168.33.10"
+      chef.validation_key_path = "./chef-validator.pem"
+
       chef.add_role "workstation"
     end
   end
@@ -32,10 +32,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     server.vm.hostname = "server"
     server.vm.network :private_network, ip: "192.168.33.20"
 
-    server.vm.provision :chef_solo do |chef|
-      chef.cookbooks_path = "./cookbooks"
-      chef.roles_path = "./roles"
-      chef.data_bags_path = "./data_bags"
+    server.vm.provision :chef_client do |chef|
+      chef.chef_server_url = "https://192.168.33.10"
+      chef.validation_key_path = "./chef-validator.pem"
+
       chef.add_role "server"
     end
   end
